@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +33,7 @@ public class TareasController {
 	private final String URL_ORIG_ANGULAR="http://localhost:4200";
 
 	
-	//@CrossOrigin(origins = URL_ORIG_ANGULAR)
+	@CrossOrigin(origins = URL_ORIG_ANGULAR)
 	@GetMapping("/getTareas")
 	public ResponseEntity<List<Tarea>> allTareas() {
 		
@@ -41,6 +42,7 @@ public class TareasController {
 		return ResponseEntity.ok(res);
 	}
 
+	@CrossOrigin(origins = URL_ORIG_ANGULAR)
 	@SuppressWarnings("deprecation")
 	@GetMapping("/getTareas/{id}")
 	public ResponseEntity<Tarea> getByIdClient(@PathVariable("id") long id){
@@ -50,7 +52,9 @@ public class TareasController {
 		
 		return 	ResponseEntity.ok(res);
 	}
-	
+
+
+	@CrossOrigin(origins = URL_ORIG_ANGULAR)
 	@PostMapping("/addTarea")
 	public ResponseEntity<Tarea> addTarea(@RequestBody Tarea body){
 
@@ -60,6 +64,7 @@ public class TareasController {
 		
 	}
 	
+	@CrossOrigin(origins = URL_ORIG_ANGULAR)
 	@PutMapping("/updateTarea")
 	public ResponseEntity<Tarea> updateTarea(@RequestBody Tarea body){
 
@@ -69,6 +74,8 @@ public class TareasController {
 		
 	}
 	
+
+	@CrossOrigin(origins = URL_ORIG_ANGULAR)
 	@DeleteMapping("/delateTarea/{id}")
 	public ResponseEntity<Boolean> delateTarea(@PathVariable("id") long id){
 
@@ -77,6 +84,5 @@ public class TareasController {
 		return ResponseEntity.ok(res);
 		
 	}
-	
 	
 }
